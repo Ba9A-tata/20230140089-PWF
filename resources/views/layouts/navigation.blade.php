@@ -16,6 +16,10 @@
                     <x-nav-link :href="url('/about')" :active="request()->is('about')">
                         {{ __('About') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.*')">
+                        {{ __('Product') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -23,7 +27,10 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
+                            <div class="text-start">
+                                <div>{{ Auth::user()->name }}</div>
+                                <div class="text-[10px] uppercase font-bold text-indigo-500 dark:text-indigo-400">Role: {{ Auth::user()->role }}</div>
+                            </div>
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -71,11 +78,16 @@
             <x-responsive-nav-link :href="url('/about')" :active="request()->is('about')">
                 {{ __('About') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('product.index')" :active="request()->routeIs('product.*')">
+                {{ __('Product') }}
+            </x-responsive-nav-link>
         </div>
 
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
+                <div class="font-medium text-xs text-indigo-500 uppercase tracking-widest">Role: {{ Auth::user()->role }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
 

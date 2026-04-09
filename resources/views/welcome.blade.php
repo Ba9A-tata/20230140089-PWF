@@ -25,8 +25,8 @@
             20230140089
         </p>
 
-        <a href="#" class="inline-block w-full bg-white text-gray-900 font-bold py-3 px-6 rounded-xl hover:bg-gray-200 transition-colors shadow-md">
-            Modul Pertemuan 1
+        <a href="{{ route('login') }}" class="inline-block w-full bg-white text-gray-900 font-bold py-3 px-6 rounded-xl hover:bg-gray-200 transition-colors shadow-md">
+            Selamat Datang untuk para penghuni dunia tipu tipu 
         </a>
     </div>
 
