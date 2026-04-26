@@ -17,6 +17,7 @@ Tampilan Gates Rule Akses Untuk Kategori Untuk Admin dan User
 
 ![alt text](SS/image-15.png)
 
-![alt text](SS/image-16.png)
+![alt text](SS/image-16.png) 
+
 
 
