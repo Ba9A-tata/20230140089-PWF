@@ -15,8 +15,10 @@
                             </svg>
                         </a>
                         <div>
-                            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 tracking-tight">Add Product</h2>
-                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Fill in the details to add a new product</p>
+                            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 tracking-tight">Add Product
+                            </h2>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Fill in the details to add a new
+                                product</p>
                         </div>
                     </div>
 
@@ -26,8 +28,7 @@
 
                         {{-- Name --}}
                         <div>
-                            <label for="name"
-                                class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                                 Product Name <span class="text-red-500">*</span>
                             </label>
                             <input type="text" id="name" name="name" value="{{ old('name') }}"
@@ -39,6 +40,26 @@
                             @error('name')
                                 <p class="mt-1.5 text-xs text-red-500">{{ $message }}</p>
                             @enderror
+                        </div>
+
+                        <div class="mb-4">
+                            <x-input-label for="name" :value="__('Nama Produk')" />
+                            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
+                                :value="old('name')" required autofocus />
+                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        </div>
+
+                        <div class="mb-4">
+                            <x-input-label for="category_id" :value="__('Kategori')" />
+                            <select name="category_id" id="category_id"
+                                class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
+                                required>
+                                <option value="">-- Pilih Kategori --</option>
+                                @foreach($categories as $cat)
+                                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('category_id')" class="mt-2" />
                         </div>
 
                         {{-- Quantity & Price --}}
@@ -64,8 +85,8 @@
                                     class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                                     Price (Rp) <span class="text-red-500">*</span>
                                 </label>
-                                <input type="number" id="price" name="price" value="{{ old('price') }}"
-                                    placeholder="0" min="0" step="0.01"
+                                <input type="number" id="price" name="price" value="{{ old('price') }}" placeholder="0"
+                                    min="0" step="0.01"
                                     class="w-full px-4 py-2.5 rounded-lg border text-sm
                                     {{ $errors->has('price') ? 'border-red-400 bg-red-50 dark:bg-red-900/20' : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700' }}
                                     text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500
@@ -89,8 +110,7 @@
                                 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
                                 <option value="">- Select Owner -</option>
                                 @foreach ($users as $user)
-                                    <option value="{{ $user->id }}"
-                                        {{ old('user_id') == $user->id ? 'selected' : '' }}>
+                                    <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>
                                         {{ $user->name }}
                                     </option>
                                 @endforeach

@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    
     protected $table = 'product';
 
     protected $fillable = [
         'name',
+        'category_id',
         'quantity',
         'price',
         'user_id'
@@ -19,11 +21,11 @@ class Product extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::Class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function category()
     {
-        return $this->hasMany(Category::class, 'product_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }

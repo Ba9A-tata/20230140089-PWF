@@ -13,12 +13,18 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="url('/about')" :active="request()->is('about')">
-                        {{ __('About') }}
-                    </x-nav-link>
-
                     <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.*')">
                         {{ __('Product') }}
+                    </x-nav-link>
+
+                    @can('access-category')
+                    <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.*')">
+                        {{ __('Category') }}
+                    </x-nav-link>
+                    @endcan
+
+                    <x-nav-link :href="url('/about')" :active="request()->is('about')">
+                        {{ __('About') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -47,7 +53,6 @@
 
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
@@ -75,12 +80,18 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="url('/about')" :active="request()->is('about')">
-                {{ __('About') }}
-            </x-responsive-nav-link>
-
             <x-responsive-nav-link :href="route('product.index')" :active="request()->routeIs('product.*')">
                 {{ __('Product') }}
+            </x-responsive-nav-link>
+
+            @can('access-category')
+            <x-responsive-nav-link :href="route('category.index')" :active="request()->routeIs('category.*')">
+                {{ __('Category') }}
+            </x-responsive-nav-link>
+            @endcan
+
+            <x-responsive-nav-link :href="url('/about')" :active="request()->is('about')">
+                {{ __('About') }}
             </x-responsive-nav-link>
         </div>
 
@@ -88,7 +99,6 @@
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-xs text-indigo-500 uppercase tracking-widest">Role: {{ Auth::user()->role }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
 
             <div class="mt-3 space-y-1">
@@ -98,7 +108,6 @@
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
